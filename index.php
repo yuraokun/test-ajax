@@ -9,9 +9,24 @@ if (isset($_POST['data'])) {
   $jsonData2 = json_decode(file_get_contents('./data.json'), true);
 
 
+  if (!array_key_exists("number", $_POST['data']) || !array_key_exists("time_id", $_POST['data'])) {
+    exit();
+  }
+
+
+
+
   if (array_key_exists($_POST['data']["number"], $jsonData)) {
 
     array_unshift($jsonData2, $_POST['data']);
+
+    $length = count($jsonData2);
+    echo $length;
+
+    if ($length >= 0) {
+      array_splice($jsonData2, 5);
+    }
+
     file_put_contents('./data.json', json_encode($jsonData2));
   }
   exit();
