@@ -2,7 +2,7 @@ import $, { get } from 'jquery';
 
 
 
-console.log(12)
+
 
 $('button').click(send);
 
@@ -15,7 +15,7 @@ function send() {
   let h = now.getHours()
   let m = now.getMinutes()
   let s = now.getSeconds()
-  console.log(h)
+
   const timestamp = Y + "年" + M + "月" + d + "日" + h + "時" + m + "分" + s + "秒";
 
   const dataObj = {
@@ -30,6 +30,8 @@ function send() {
   );
 }
 
+
+let timeStamp;
 
 setInterval(() => {
 
@@ -49,6 +51,8 @@ function getData() {
     .done(function (data) {
       console.log(data);
 
+
+
       render(data);
     })
     .fail(function () {
@@ -60,13 +64,28 @@ function getData() {
 
 function render(data) {
 
+  if (timeStamp) {
 
+    if (timeStamp === data[0].time_id) {
+      console.log("not render")
+      return
+    }
+  }
+
+  timeStamp = data[0].time_id;
+
+  console.log("render");
   let temp = "";
 
   data.forEach((el, index) => {
 
-    temp += `<div class='data'>
-    <p>${el.number}</p>
+    if (index === 0) {
+      temp += `<div class='data first'>`
+    } else {
+      temp += `<div class='data'>`
+    }
+    temp += `
+    <p>${el.number} : </p>
     <p>${el.time_id}</p>
     </div>
     `

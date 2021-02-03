@@ -41,6 +41,32 @@ if (isset($_POST['data'])) {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+
+  <style>
+  .data {
+    display: flex;
+    align-items: center;
+    border: 1px solid orange;
+  }
+
+  .first {
+    opacity: 0;
+    transform: translateX(100vw);
+    animation-name: fadeIn;
+    animation-duration: 2s;
+    animation-delay: 1s;
+    animation-fill-mode: forwards;
+  }
+
+  @keyframes fadeIn {
+    0% {}
+
+    100% {
+      transform: none;
+      opacity: 1;
+    }
+  }
+  </style>
 </head>
 
 <body>
