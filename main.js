@@ -95,3 +95,22 @@ function render(data) {
   $('main').html(temp);
 
 }
+
+function getJsonp_GAS() {
+  $.ajax({
+    type: 'GET',
+    url: 'https://script.google.com/macros/s/AKfycbx1LM_bHwMJ1N8YVeqEvsYnJXdHWPJTbiODSKmGgW0/dev',
+    dataType: 'jsonp',
+    jsonpCallback: 'jsondata',
+    success: function (json) {
+      console.log(json);
+      var len = json.length;
+      var html = '';
+      for (var i = 0; i < len; i++) {
+        html += json[i].name + ' ' + json[i].age + '<br>';
+      }
+      $('.main2').html(html);
+    }
+  });
+}
+getJsonp_GAS();

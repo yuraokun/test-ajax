@@ -83,6 +83,9 @@ if (isset($_POST['data'])) {
 
     </main>
 
+
+    <div class="main2"></div>
+
   </div>
   <script src="./dist/main.js"></script>
 </body>
